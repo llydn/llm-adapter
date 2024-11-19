@@ -100,7 +100,7 @@ def main():
 
     # Define training arguments
     training_args = TrainingArguments(
-        output_dir="./gpt2-yelp-adapter",
+        output_dir="./gpt2-yelp-adapter_regression",
         overwrite_output_dir=True,
         num_train_epochs=3,
         per_device_train_batch_size=8,
