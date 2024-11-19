@@ -1,0 +1,4 @@
+*.csv
+
+gpt2-yelp-adapter/
+saved_adapters/
