@@ -100,7 +100,7 @@ class CustomAdapterTrainer(AdapterTrainer):
                 result = super().evaluate(eval_dataset=dataset, **kwargs)
                 # results[name] = result
                 for key, value in result.items():
-                    results[f"{name}_{key}"] = value
+                    results[f"eval_{name}_{key}"] = value
         else:
             # Default to parent's evaluate method
             results = super().evaluate(**kwargs)
@@ -166,7 +166,7 @@ def main():
         logging_steps=20,
         save_total_limit=2,
         load_best_model_at_end=True,
-        metric_for_best_model=f"val_{args.model_config}_eval_accuracy",
+        metric_for_best_model=f"val_{args.model_config}_eval_accuracy" if args.model_config != "baseline" else "accuracy",
         greater_is_better=True,
     )
 
