@@ -1,0 +1,15 @@
+{
+  "data_save_path": {
+       "train": "data/train/shopping.csv",
+       "test": "data/test/baseline.csv"
+    },
+  "categories": ["shopping"],
+  "category_configs": {
+    "shopping": {
+      "max_num": 1000
+    }
+  },
+    "random_seed": 42,
+    "test_size_per_category": 50
+}
+

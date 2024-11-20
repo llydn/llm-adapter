@@ -1,0 +1,29 @@
+{
+  "data_save_path": {
+       "train": "data/train/baseline.csv",
+       "test": "data/test/baseline.csv"
+    },
+  "categories": ["restaurant", "drinks", "entertainment", "shopping"],
+  "category_configs": {
+    "restaurant": {
+      "select_num": 1000,
+      "num_shards": 4,
+      "max_num": 1000
+    },
+    "drinks": {
+      "num_shards": 4,
+      "max_num": 1000
+    },
+    "entertainment": {
+      "num_shards": 4,
+      "max_num": 1000
+    },
+    "shopping": {
+      "num_shards": 4,
+      "max_num": 1000
+    }
+  },
+    "random_seed": 42,
+    "test_size_per_category": 50
+}
+

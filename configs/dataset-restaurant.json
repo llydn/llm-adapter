@@ -1,0 +1,16 @@
+{
+  "data_save_path": {
+       "train": "data/train/restaurant.csv",
+       "test": "data/test/baseline.csv"
+    },
+  "categories": ["restaurant"],
+  "category_configs": {
+    "restaurant": {
+      "select_num": 1000,
+      "max_num": 1000
+    }
+  },
+    "random_seed": 42,
+    "test_size_per_category": 50
+}
+

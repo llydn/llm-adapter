@@ -1,0 +1,15 @@
+{
+  "data_save_path": {
+       "train": "data/train/drinks.csv",
+       "test": "data/test/baseline.csv"
+    },
+  "categories": ["drinks"],
+  "category_configs": {
+    "drinks": {
+      "max_num": 1000
+    }
+  },
+    "random_seed": 42,
+    "test_size_per_category": 50
+}
+

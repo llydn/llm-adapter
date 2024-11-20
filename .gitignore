@@ -1,4 +1,5 @@
-*.csv
+# *.csv
 
-gpt2-yelp-adapter/
+__pycache__/
+gpt2-yelp-adapter*/
 saved_adapters/
