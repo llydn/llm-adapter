@@ -16,12 +16,12 @@ from argparse import ArgumentParser
 from process_datasets import process_train_dataset, process_test_dataset
 
 
-def load_dataset_from_config(model_config="baseline", config_path=None, train_path="train.csv", test_path="test.csv"):
+def load_dataset_from_config(train_set="baseline", config_path=None, train_path="train.csv", test_path="test.csv"):
 
     # Load the Yelp Review Full dataset
     # dataset = load_dataset("yelp_review_full")
     # dataset = load_dataset("csv", data_files={"train": "train.csv", "test": "test.csv"})
-    ds_config_file = f"configs/dataset-{model_config}.json" if config_path is None else config_path
+    ds_config_file = f"configs/dataset-{train_set}.json" if config_path is None else config_path
     dataset_train = process_train_dataset(train_path, ds_config_file)
     dataset_test = process_test_dataset(test_path, ds_config_file)
     dataset = DatasetDict({"train": dataset_train, "test": dataset_test})
@@ -137,7 +137,7 @@ class CustomAdapterTrainer(AdapterTrainer):
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument("--model_config", type=str, default="baseline")
+    parser.add_argument("--train_set", type=str, default="baseline")
     parser.add_argument(
         "--model_output_dir", type=str, default="training_outputs/data_100000/"
     )
@@ -185,7 +185,7 @@ def main():
     train_dataset, val_dataset = prepare_dataset(
         tokenizer,
         dataset=load_dataset_from_config(
-            model_config=args.model_config,
+            train_set=args.train_set,
             train_path=args.train_data,
             test_path=args.test_data,
         ),
@@ -197,7 +197,7 @@ def main():
 
     # Define training arguments
     training_args = TrainingArguments(
-        output_dir=f"{args.model_output_dir}/gpt2-yelp-adapter_class_2_{args.model_config}",
+        output_dir=f"{args.model_output_dir}/gpt2-yelp-adapter_class_2_{args.train_set}",
         overwrite_output_dir=True,
         num_train_epochs=args.max_epochs,
         per_device_train_batch_size=80,
@@ -212,8 +212,8 @@ def main():
         save_total_limit=2,
         load_best_model_at_end=True,
         metric_for_best_model=(
-            f"val_{args.model_config}_eval_accuracy"
-            if args.model_config != "baseline"
+            f"val_{args.train_set}_eval_accuracy"
+            if args.train_set != "baseline"
             else f"val_all_eval_accuracy"
             # else "accuracy"
         ),
@@ -225,18 +225,18 @@ def main():
         model=model,
         args=training_args,
         train_dataset=train_dataset,
-        eval_dataset=val_dataset[f"val_{args.model_config}"] if args.model_config != "baseline" else val_dataset["val_all"],
+        eval_dataset=val_dataset[f"val_{args.train_set}"] if args.train_set != "baseline" else val_dataset["val_all"],
         eval_datasets=val_dataset,
         tokenizer=tokenizer,
         data_collator=data_collator,
         compute_metrics=compute_metrics,
     )
-    # if args.model_config != "baseline":
+    # if args.train_set != "baseline":
     #     trainer = CustomAdapterTrainer(
     #         model=model,
     #         args=training_args,
     #         train_dataset=train_dataset,
-    #         eval_dataset=val_dataset[f"val_{args.model_config}"],
+    #         eval_dataset=val_dataset[f"val_{args.train_set}"],
     #         eval_datasets=val_dataset,
     #         tokenizer=tokenizer,
     #         data_collator=data_collator,
@@ -261,17 +261,17 @@ def main():
     print(f"Evaluation metrics: {metrics}")
 
     os.makedirs(
-        f"{args.eval_output_dir}/{args.model_config}",
+        f"{args.eval_output_dir}/{args.train_set}",
         exist_ok=True,
     )
     with open(
-        f"{args.eval_output_dir}/{args.model_config}/metrics.json",
+        f"{args.eval_output_dir}/{args.train_set}/metrics.json",
         "w",
     ) as f:
         json.dump(metrics, f)
 
     # Save the adapter and the classification head
-    adapter_save_path = f"{args.model_output_dir}/saved_adapters/yelp_adapter_class_2_{args.model_config}"
+    adapter_save_path = f"{args.model_output_dir}/saved_adapters/yelp_adapter_class_2_{args.train_set}"
     os.makedirs(adapter_save_path, exist_ok=True)
     model.save_adapter(adapter_save_path, "yelp_adapter")
     model.save_head(os.path.join(adapter_save_path, "head"), "yelp_head")
