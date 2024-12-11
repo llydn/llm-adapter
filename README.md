@@ -24,9 +24,9 @@ explaination of the arguments:
 #### Train
 - baseline: 5000 samples in all. Sample numbers for each category are listed below:
 
-    |               | Restaurant | Drinks | Shopping | Entertainment | Housing | Beauty |
-|---------------|------------|--------|----------|---------------|---------|--------|
-| Amount        | 1000       | 1000   | 1000     | 1000          | 500     | 500    |
+|        | Restaurant | Drinks | Shopping | Entertainment | Housing | Beauty |
+| :----: | :--------: | :----: | :------: | :-----------: | :-----: | :----: |
+| Amount |    1000    |  1000  |   1000   |     1000      |   500   |  500   |
 
 - restaurant: 5000 samples in Restaurant category.
 - drinks: 5000 samples in Drinks category.
