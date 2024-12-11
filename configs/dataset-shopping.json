@@ -1,15 +1,14 @@
 {
   "data_save_path": {
-       "train": "data/train/shopping.csv",
-       "test": "data/test/baseline.csv"
+       "train": "data_100000/train/shopping.csv",
+       "test": "data_100000/test/baseline.csv"
     },
   "categories": ["shopping"],
   "category_configs": {
     "shopping": {
-      "max_num": 1000
+      "max_num": 5000
     }
   },
-    "random_seed": 42,
-    "test_size_per_category": 50
+    "random_seed": 42
 }
 

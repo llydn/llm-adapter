@@ -1,29 +1,42 @@
 {
   "data_save_path": {
-       "train": "data/train/baseline.csv",
-       "test": "data/test/baseline.csv"
+       "train": "data_100000/train/baseline.csv",
+       "test": "data_100000/test/baseline.csv"
     },
-  "categories": ["restaurant", "drinks", "entertainment", "shopping"],
+  "categories": ["restaurant", "drinks", "entertainment", "shopping", "housing", "beauty"],
   "category_configs": {
     "restaurant": {
-      "select_num": 1000,
-      "num_shards": 4,
-      "max_num": 1000
+      "select_num": 5000,
+      "num_shards": 5,
+      "max_num": 5000
     },
     "drinks": {
-      "num_shards": 4,
-      "max_num": 1000
+      "select_num": 5000,
+      "num_shards": 5,
+      "max_num": 5000
     },
     "entertainment": {
-      "num_shards": 4,
-      "max_num": 1000
+      "select_num": 5000,
+      "num_shards": 5,
+      "max_num": 5000
     },
     "shopping": {
-      "num_shards": 4,
-      "max_num": 1000
+      "select_num": 5000,
+      "num_shards": 5,
+      "max_num": 5000
+    },
+    "housing": {
+      "select_num": 2500,
+      "num_shards": 5,
+      "max_num": 2500
+    },
+    "beauty": {
+      "select_num": 2500,
+      "num_shards": 5,
+      "max_num": 2500
     }
   },
     "random_seed": 42,
-    "test_size_per_category": 50
+    "test_size_per_category": 250
 }
 

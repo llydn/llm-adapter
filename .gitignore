@@ -1,5 +1,8 @@
-# *.csv
+test.csv
+train.csv
 
 __pycache__/
-gpt2-yelp-adapter*/
-saved_adapters/
+**/gpt2-yelp-adapter_class_2_*
+data/
+training_outputs/data_10000/
+.mypy_cache/

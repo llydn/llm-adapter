@@ -1,12 +1,12 @@
 {
   "data_save_path": {
-       "train": "data_100000/train/drinks.csv",
+       "train": "data_100000/train/beauty.csv",
        "test": "data_100000/test/baseline.csv"
     },
-  "categories": ["drinks"],
+  "categories": ["beauty"],
   "category_configs": {
-    "drinks": {
-      "max_num": 5000
+    "beauty": {
+      "max_num": 2500
     }
   },
     "random_seed": 42
